@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-    mirotalksfu:
-        image: mirotalk/sfu:latest
+    cleverattisfu:
+        image: cleveratti/sfu:latest
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: mirotalksfu
-        hostname: mirotalksfu
+        container_name: cleverattisfu
+        hostname: cleverattisfu
         restart: unless-stopped
         volumes:
             - ./app/src/config.js:/src/app/src/config.js:ro

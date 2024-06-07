@@ -73,7 +73,7 @@ module.exports = {
     },
     api: {
         // Default secret key for app/api
-        keySecret: 'mirotalksfu_default_secret',
+        keySecret: 'cleverattisfu_default_secret',
         // Define which endpoints are allowed
         allowed: {
             meetings: false,
@@ -89,7 +89,7 @@ module.exports = {
             JWT https://jwt.io/
             Securely manages credentials for host configurations and user authentication, enhancing security and streamlining processes.
          */
-        key: 'mirotalksfu_jwt_secret',
+        key: 'cleverattisfu_jwt_secret',
         exp: '1h',
     },
     oidc: {
@@ -105,10 +105,10 @@ module.exports = {
         enabled: false,
         config: {
             issuerBaseURL: 'https://server.example.com',
-            baseURL: `http://localhost:${process.env.PORT ? process.env.PORT : 3010}`, // https://sfu.mirotalk.com
+            baseURL: `http://localhost:${process.env.PORT ? process.env.PORT : 3010}`, // https://sfu.cleveratti.com
             clientID: 'clientID',
             clientSecret: 'clientSecret',
-            secret: 'mirotalksfu-oidc-secret',
+            secret: 'cleverattisfu-oidc-secret',
             authorizationParams: {
                 response_type: 'code',
                 scope: 'openid profile email',
@@ -133,8 +133,8 @@ module.exports = {
         user_auth: false,
         users_from_db: false, // if true ensure that api.token is also set to true.
         //users_api_endpoint: 'http://localhost:9000/api/v1/user/isAuth',
-        users_api_endpoint: 'https://webrtc.mirotalk.com/api/v1/user/isAuth',
-        users_api_secret_key: 'mirotalkweb_default_secret',
+        users_api_endpoint: 'https://webrtc.cleveratti.com/api/v1/user/isAuth',
+        users_api_secret_key: 'cleverattiweb_default_secret',
         users: [
             {
                 username: 'username',
@@ -183,7 +183,7 @@ module.exports = {
         basePath: 'https://api.heygen.com',
         apiKey: '',
         systemLimit:
-            'You are a streaming avatar from MiroTalk SFU, an industry-leading product that specialize in videos communications. Audience will try to have a conversation with you, please try answer the questions or respond their comments naturally, and concisely. - please try your best to response with short answers, and only answer the last question.',
+            'You are a streaming avatar from cleveratti SFU, an industry-leading product that specialize in videos communications. Audience will try to have a conversation with you, please try answer the questions or respond their comments naturally, and concisely. - please try your best to response with short answers, and only answer the last question.',
     },
     email: {
         /*
@@ -195,7 +195,7 @@ module.exports = {
         port: 587,
         username: 'your_username',
         password: 'your_password',
-        sendTo: 'sfu.mirotalk@gmail.com',
+        sendTo: 'sfu.cleveratti@gmail.com',
     },
     ngrok: {
         /* 
@@ -260,33 +260,33 @@ module.exports = {
     },
     ui: {
         /*
-            Customize your MiroTalk instance
+            Customize your cleveratti instance
         */
         brand: {
             app: {
-                name: 'MiroTalk SFU',
-                title: 'MiroTalk SFU<br />Free browser based Real-time video calls.<br />Simple, Secure, Fast.',
+                name: 'cleveratti SFU',
+                title: 'cleveratti SFU<br />Free browser based Real-time video calls.<br />Simple, Secure, Fast.',
                 description:
                     'Start your next video call with a single click. No download, plug-in, or login is required. Just get straight to talking, messaging, and sharing your screen.',
             },
             site: {
-                title: 'MiroTalk SFU, Free Video Calls, Messaging and Screen Sharing',
+                title: 'cleveratti SFU, Free Video Calls, Messaging and Screen Sharing',
                 icon: '../images/logo.svg',
                 appleTouchIcon: '../images/logo.svg',
             },
             meta: {
                 description:
-                    'MiroTalk SFU powered by WebRTC and mediasoup, Real-time Simple Secure Fast video calls, messaging and screen sharing capabilities in the browser.',
+                    'cleveratti SFU powered by WebRTC and mediasoup, Real-time Simple Secure Fast video calls, messaging and screen sharing capabilities in the browser.',
                 keywords:
                     'webrtc, miro, mediasoup, mediasoup-client, self hosted, voip, sip, real-time communications, chat, messaging, meet, webrtc stun, webrtc turn, webrtc p2p, webrtc sfu, video meeting, video chat, video conference, multi video chat, multi video conference, peer to peer, p2p, sfu, rtc, alternative to, zoom, microsoft teams, google meet, jitsi, meeting',
             },
             og: {
                 type: 'app-webrtc',
-                siteName: 'MiroTalk SFU',
+                siteName: 'cleveratti SFU',
                 title: 'Click the link to make a call.',
-                description: 'MiroTalk SFU calling provides real-time video calls, messaging and screen sharing.',
-                image: 'https://sfu.mirotalk.com/images/mirotalksfu.png',
-                url: 'https://sfu.mirotalk.com',
+                description: 'cleveratti SFU calling provides real-time video calls, messaging and screen sharing.',
+                image: 'https://sfu.cleveratti.com/images/cleverattisfu.png',
+                url: 'https://sfu.cleveratti.com',
             },
             html: {
                 features: true,
@@ -393,7 +393,7 @@ module.exports = {
             We use our Self-hosted Umami to track aggregated usage statistics in order to improve our service.
         */
         enabled: true,
-        src: 'https://stats.mirotalk.com/script.js',
+        src: 'https://stats.cleveratti.com/script.js',
         id: '41d26670-f275-45bb-af82-3ce91fe57756',
     },
     mediasoup: {

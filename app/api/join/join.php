@@ -1,11 +1,11 @@
 <?php
 
-$API_KEY_SECRET = "mirotalksfu_default_secret";
-$MIROTALK_URL = "https://sfu.mirotalk.com/api/v1/join";
-// $MIROTALK_URL = "http://localhost:3010/api/v1/join";
+$API_KEY_SECRET = "cleverattisfu_default_secret";
+$cleveratti_URL = "https://sfu.cleveratti.com/api/v1/join";
+// $cleveratti_URL = "http://localhost:3010/api/v1/join";
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $MIROTALK_URL);
+curl_setopt($ch, CURLOPT_URL, $cleveratti_URL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 
@@ -19,7 +19,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $data = array(
     "room"          => "test",
     "roomPassword"  => false,
-    "name"          => "mirotalksfu",
+    "name"          => "cleverattisfu",
     "audio"         => true,
     "video"         => true,
     "screen"        => true,

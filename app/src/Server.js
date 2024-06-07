@@ -1,51 +1,4 @@
 'use strict';
-
-/*
-███████ ███████ ██████  ██    ██ ███████ ██████  
-██      ██      ██   ██ ██    ██ ██      ██   ██ 
-███████ █████   ██████  ██    ██ █████   ██████  
-     ██ ██      ██   ██  ██  ██  ██      ██   ██ 
-███████ ███████ ██   ██   ████   ███████ ██   ██                                           
-
-dependencies: {
-    @sentry/node            : https://www.npmjs.com/package/@sentry/node
-    @sentry/integrations    : https://www.npmjs.com/package/@sentry/integrations
-    axios                   : https://www.npmjs.com/package/axios
-    body-parser             : https://www.npmjs.com/package/body-parser
-    compression             : https://www.npmjs.com/package/compression
-    colors                  : https://www.npmjs.com/package/colors
-    cors                    : https://www.npmjs.com/package/cors
-    crypto-js               : https://www.npmjs.com/package/crypto-js
-    express                 : https://www.npmjs.com/package/express
-    express-openid-connect  : https://www.npmjs.com/package/express-openid-connect
-    httpolyglot             : https://www.npmjs.com/package/httpolyglot
-    jsonwebtoken            : https://www.npmjs.com/package/jsonwebtoken
-    js-yaml                 : https://www.npmjs.com/package/js-yaml
-    mediasoup               : https://www.npmjs.com/package/mediasoup
-    mediasoup-client        : https://www.npmjs.com/package/mediasoup-client
-    ngrok                   : https://www.npmjs.com/package/ngrok
-    openai                  : https://www.npmjs.com/package/openai
-    qs                      : https://www.npmjs.com/package/qs
-    socket.io               : https://www.npmjs.com/package/socket.io
-    swagger-ui-express      : https://www.npmjs.com/package/swagger-ui-express
-    uuid                    : https://www.npmjs.com/package/uuid
-    xss                     : https://www.npmjs.com/package/xss
-}
-*/
-
-/**
- * MiroTalk SFU - Server component
- *
- * @link    GitHub: https://github.com/miroslavpejic85/mirotalksfu
- * @link    Official Live demo: https://sfu.mirotalk.com
- * @license For open source use: AGPLv3
- * @license For commercial or closed source, contact us at license.mirotalk@gmail.com or purchase directly via CodeCanyon
- * @license CodeCanyon: https://codecanyon.net/item/mirotalk-sfu-webrtc-realtime-video-conferences/40769970
- * @author  Miroslav Pejic - miroslav.pejic.85@gmail.com
- * @version 1.4.46
- *
- */
-
 const express = require('express');
 const { auth, requiresAuth } = require('express-openid-connect');
 const cors = require('cors');
@@ -107,7 +60,7 @@ const io = require('socket.io')(httpsServer, {
 const host = 'https://' + 'localhost' + ':' + config.server.listen.port; // config.server.listen.ip
 
 const jwtCfg = {
-    JWT_KEY: (config.jwt && config.jwt.key) || 'mirotalksfu_jwt_secret',
+    JWT_KEY: (config.jwt && config.jwt.key) || 'cleverattisfu_jwt_secret',
     JWT_EXP: (config.jwt && config.jwt.exp) || '1h',
 };
 
@@ -154,7 +107,7 @@ if (sentryEnabled) {
 // Stats
 const defaultStats = {
     enabled: true,
-    src: 'https://stats.mirotalk.com/script.js',
+    src: 'https://stats.cleveratti.com/script.js',
     id: '41d26670-f275-45bb-af82-3ce91fe57756',
 };
 
@@ -192,13 +145,9 @@ if (serverRecordingEnabled) {
 
 // html views
 const views = {
-    about: path.join(__dirname, '../../', 'public/views/about.html'),
-    landing: path.join(__dirname, '../../', 'public/views/landing.html'),
     login: path.join(__dirname, '../../', 'public/views/login.html'),
     newRoom: path.join(__dirname, '../../', 'public/views/newroom.html'),
     notFound: path.join(__dirname, '../../', 'public/views/404.html'),
-    permission: path.join(__dirname, '../../', 'public/views/permission.html'),
-    privacy: path.join(__dirname, '../../', 'public/views/privacy.html'),
     room: path.join(__dirname, '../../', 'public/views/Room.html'),
 };
 
@@ -432,8 +381,8 @@ function startServer() {
 
             log.debug('Direct Join', req.query);
 
-            // http://localhost:3010/join?room=test&roomPassword=0&name=mirotalksfu&audio=1&video=1&screen=0&hide=0&notify=1
-            // http://localhost:3010/join?room=test&roomPassword=0&name=mirotalksfu&audio=1&video=1&screen=0&hide=0&notify=0&token=token
+            // http://localhost:3010/join?room=test&roomPassword=0&name=cleverattisfu&audio=1&video=1&screen=0&hide=0&notify=1
+            // http://localhost:3010/join?room=test&roomPassword=0&name=cleverattisfu&audio=1&video=1&screen=0&hide=0&notify=0&token=token
 
             const { room, roomPassword, name, audio, video, screen, hide, notify, token, isPresenter } = checkXSS(
                 req.query,
@@ -524,21 +473,6 @@ function startServer() {
         res.redirect('/');
     });
 
-    // if not allow video/audio
-    app.get(['/permission'], (req, res) => {
-        res.sendFile(views.permission);
-    });
-
-    // privacy policy
-    app.get(['/privacy'], (req, res) => {
-        res.sendFile(views.privacy);
-    });
-
-    // mirotalk about
-    app.get(['/about'], (req, res) => {
-        res.sendFile(views.about);
-    });
-
     // Get stats endpoint
     app.get(['/stats'], (req, res) => {
         const stats = config.stats ? config.stats : defaultStats;
@@ -590,8 +524,8 @@ function startServer() {
                 config.presenters && config.presenters.join_first
                     ? true
                     : config.presenters &&
-                      config.presenters.list &&
-                      config.presenters.list.includes(username).toString();
+                    config.presenters.list &&
+                    config.presenters.list.includes(username).toString();
 
             const token = encodeToken({ username: username, password: password, presenter: isPresenter });
             return res.status(200).json({ message: token });
@@ -663,7 +597,7 @@ function startServer() {
         const { host, authorization } = req.headers;
         const api = new ServerApi(host, authorization);
         if (!api.isAuthorized()) {
-            log.debug('MiroTalk get meetings - Unauthorized', {
+            log.debug('cleveratti get meetings - Unauthorized', {
                 header: req.headers,
                 body: req.body,
             });
@@ -673,7 +607,7 @@ function startServer() {
         const meetings = api.getMeetings(roomList);
         res.json({ meetings: meetings });
         // log.debug the output if all done
-        log.debug('MiroTalk get meetings - Authorized', {
+        log.debug('cleveratti get meetings - Authorized', {
             header: req.headers,
             body: req.body,
             meetings: meetings,
@@ -692,7 +626,7 @@ function startServer() {
         const { host, authorization } = req.headers;
         const api = new ServerApi(host, authorization);
         if (!api.isAuthorized()) {
-            log.debug('MiroTalk get meeting - Unauthorized', {
+            log.debug('cleveratti get meeting - Unauthorized', {
                 header: req.headers,
                 body: req.body,
             });
@@ -702,7 +636,7 @@ function startServer() {
         const meetingURL = api.getMeetingURL();
         res.json({ meeting: meetingURL });
         // log.debug the output if all done
-        log.debug('MiroTalk get meeting - Authorized', {
+        log.debug('cleveratti get meeting - Authorized', {
             header: req.headers,
             body: req.body,
             meeting: meetingURL,
@@ -721,7 +655,7 @@ function startServer() {
         const { host, authorization } = req.headers;
         const api = new ServerApi(host, authorization);
         if (!api.isAuthorized()) {
-            log.debug('MiroTalk get join - Unauthorized', {
+            log.debug('cleveratti get join - Unauthorized', {
                 header: req.headers,
                 body: req.body,
             });
@@ -731,7 +665,7 @@ function startServer() {
         const joinURL = api.getJoinURL(req.body);
         res.json({ join: joinURL });
         // log.debug the output if all done
-        log.debug('MiroTalk get join - Authorized', {
+        log.debug('cleveratti get join - Authorized', {
             header: req.headers,
             body: req.body,
             join: joinURL,
@@ -750,7 +684,7 @@ function startServer() {
         const { host, authorization } = req.headers;
         const api = new ServerApi(host, authorization);
         if (!api.isAuthorized()) {
-            log.debug('MiroTalk get token - Unauthorized', {
+            log.debug('cleveratti get token - Unauthorized', {
                 header: req.headers,
                 body: req.body,
             });
@@ -760,7 +694,7 @@ function startServer() {
         const token = api.getToken(req.body);
         res.json({ token: token });
         // log.debug the output if all done
-        log.debug('MiroTalk get token - Authorized', {
+        log.debug('cleveratti get token - Authorized', {
             header: req.headers,
             body: req.body,
             token: token,
@@ -1431,7 +1365,7 @@ function startServer() {
             socket.emit('newProducers', producerList);
         });
 
-        socket.on('getPeerCounts', async ({}, callback) => {
+        socket.on('getPeerCounts', async ({ }, callback) => {
             if (!roomList.has(socket.room_id)) return;
 
             const room = roomList.get(socket.room_id);
@@ -1872,7 +1806,7 @@ function startServer() {
 
         // https://docs.heygen.com/reference/overview-copy
 
-        socket.on('getAvatarList', async ({}, cb) => {
+        socket.on('getAvatarList', async ({ }, cb) => {
             if (!config.videoAI.enabled || !config.videoAI.apiKey)
                 return cb({ error: 'Video AI seems disabled, try later!' });
             try {
@@ -1893,7 +1827,7 @@ function startServer() {
             }
         });
 
-        socket.on('getVoiceList', async ({}, cb) => {
+        socket.on('getVoiceList', async ({ }, cb) => {
             if (!config.videoAI.enabled || !config.videoAI.apiKey)
                 return cb({ error: 'Video AI seems disabled, try later!' });
             try {
@@ -2195,11 +2129,11 @@ function startServer() {
         function isValidHttpURL(input) {
             const pattern = new RegExp(
                 '^(https?:\\/\\/)?' + // protocol
-                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-                    '(\\#[-a-z\\d_]*)?$',
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                '(\\#[-a-z\\d_]*)?$',
                 'i',
             ); // fragment locator
             return pattern.test(input);

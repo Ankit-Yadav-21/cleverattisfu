@@ -2,9 +2,9 @@
 import requests
 import json
 
-API_KEY_SECRET = "mirotalksfu_default_secret"
-MIROTALK_URL = "https://sfu.mirotalk.com/api/v1/meetings"
-#MIROTALK_URL = "http://localhost:3010/api/v1/meetings"
+API_KEY_SECRET = "cleverattisfu_default_secret"
+cleveratti_URL = "https://sfu.cleveratti.com/api/v1/meetings"
+#cleveratti_URL = "http://localhost:3010/api/v1/meetings"
 
 headers = {
     "authorization": API_KEY_SECRET,
@@ -12,7 +12,7 @@ headers = {
 }
 
 response = requests.get(
-    MIROTALK_URL,
+    cleveratti_URL,
     headers=headers
 )
 

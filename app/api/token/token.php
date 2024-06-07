@@ -1,11 +1,11 @@
 <?php
 
-$API_KEY_SECRET = "mirotalksfu_default_secret";
-$MIROTALK_URL = "https://sfu.mirotalk.com/api/v1/token";
-#$MIROTALK_URL = "http://localhost:3010/api/v1/token";
+$API_KEY_SECRET = "cleverattisfu_default_secret";
+$cleveratti_URL = "https://sfu.cleveratti.com/api/v1/token";
+#$cleveratti_URL = "http://localhost:3010/api/v1/token";
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $MIROTALK_URL);
+curl_setopt($ch, CURLOPT_URL, $cleveratti_URL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 
