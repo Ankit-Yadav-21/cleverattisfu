@@ -1,8 +1,8 @@
 swagger: '2.0'
 
 info:
-    title: cleveratti SFU API
-    description: API description for external applications that integrate with cleveratti SFU.
+    title: Cleveratti SFU API
+    description: API description for external applications that integrate with Cleveratti SFU.
     version: 1.0.1
 
 basePath: /api/v1

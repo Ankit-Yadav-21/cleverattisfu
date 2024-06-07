@@ -1743,9 +1743,6 @@ function handleButtons() {
     unlockRoomButton.onclick = () => {
         rc.roomAction('unlock');
     };
-    aboutButton.onclick = () => {
-        showAbout();
-    };
     // restartICE.onclick = async () => {
     //     await rc.restartIce();
     // };
@@ -2939,7 +2936,7 @@ function getCookie(cName) {
 function isHtml(str) {
     var a = document.createElement('div');
     a.innerHTML = str;
-    for (var c = a.childNodes, i = c.length; i--; ) {
+    for (var c = a.childNodes, i = c.length; i--;) {
         if (c[i].nodeType == 1) return true;
     }
     return false;
@@ -3946,53 +3943,4 @@ function adaptAspectRatio(participantsCount) {
     }
     BtnAspectRatio.selectedIndex = DetectRTC.isMobileDevice ? mobile : desktop;
     setAspectRatio(BtnAspectRatio.selectedIndex);
-}
-
-// ####################################################
-// ABOUT
-// ####################################################
-
-function showAbout() {
-    sound('open');
-
-    Swal.fire({
-        background: swalBackground,
-        imageUrl: image.about,
-        customClass: { image: 'img-about' },
-        position: 'center',
-        title: 'WebRTC SFU',
-        html: `
-        <br />
-        <div id="about">
-            <button 
-                id="support-button" 
-                data-umami-event="Support button" 
-                class="pulsate" 
-                onclick="window.open('https://codecanyon.net/user/miroslavpejic85')">
-                <i class="fas fa-heart"></i> 
-                Support
-            </button>
-            <br /><br /><br />
-            Author: <a 
-                id="linkedin-button" 
-                data-umami-event="Linkedin button" 
-                href="https://www.linkedin.com/in/miroslav-pejic-976a07101/" target="_blank"> 
-                Miroslav Pejic
-            </a>
-            <br /><br />
-            Email:<a 
-                id="email-button" 
-                data-umami-event="Email button" 
-                href="mailto:miroslav.pejic.85@gmail.com?subject=cleveratti SFU info"> 
-                miroslav.pejic.85@gmail.com
-            </a>
-            <br /><br />
-            <hr />
-            <span>&copy; 2024 cleveratti SFU, all rights reserved</span>
-            <hr />
-        </div>
-        `,
-        showClass: { popup: 'animate__animated animate__fadeInDown' },
-        hideClass: { popup: 'animate__animated animate__fadeOutUp' },
-    });
 }

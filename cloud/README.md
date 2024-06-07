@@ -16,7 +16,7 @@ npm start
 
 ## Edit config.js
 
-In the cleveratti SFU `app/src/config.js` file, change the endpoint to send recording chunks:
+In the Cleveratti SFU `app/src/config.js` file, change the endpoint to send recording chunks:
 
 ```js
 recording: {

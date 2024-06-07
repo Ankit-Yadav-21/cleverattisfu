@@ -32,29 +32,29 @@ const footer = document.getElementById('footer');
 // app/src/config.js - ui.brand
 let BRAND = {
     app: {
-        name: 'cleveratti SFU',
-        title: 'cleveratti SFU<br />Free browser based Real-time video calls.<br />Simple, Secure, Fast.',
+        name: 'Cleveratti SFU',
+        title: 'Cleveratti SFU<br />Free browser based Real-time video calls.<br />Simple, Secure, Fast.',
         description:
             'Start your next video call with a single click. No download, plug-in, or login is required. Just get straight to talking, messaging, and sharing your screen.',
     },
     site: {
-        title: 'cleveratti SFU, Free Video Calls, Messaging and Screen Sharing',
+        title: 'Cleveratti SFU, Free Video Calls, Messaging and Screen Sharing',
         icon: '../images/logo.svg',
         appleTouchIcon: '../images/logo.svg',
     },
     meta: {
         description:
-            'cleveratti SFU powered by WebRTC and mediasoup, Real-time Simple Secure Fast video calls, messaging and screen sharing capabilities in the browser.',
+            'Cleveratti SFU powered by WebRTC and mediasoup, Real-time Simple Secure Fast video calls, messaging and screen sharing capabilities in the browser.',
         keywords:
             'webrtc, miro, mediasoup, mediasoup-client, self hosted, voip, sip, real-time communications, chat, messaging, meet, webrtc stun, webrtc turn, webrtc p2p, webrtc sfu, video meeting, video chat, video conference, multi video chat, multi video conference, peer to peer, p2p, sfu, rtc, alternative to, zoom, microsoft teams, google meet, jitsi, meeting',
     },
     og: {
         type: 'app-webrtc',
-        siteName: 'cleveratti SFU',
+        siteName: 'Cleveratti SFU',
         title: 'Click the link to make a call.',
-        description: 'cleveratti SFU calling provides real-time video calls, messaging and screen sharing.',
-        image: 'https://sfu.cleveratti.com/images/cleverattisfu.png',
-        url: 'https://sfu.cleveratti.com',
+        description: 'Cleveratti SFU calling provides real-time video calls, messaging and screen sharing.',
+        image: 'https://sfu.Cleveratti.com/images/Cleverattisfu.png',
+        url: 'https://sfu.Cleveratti.com',
     },
     html: {
         features: true,
